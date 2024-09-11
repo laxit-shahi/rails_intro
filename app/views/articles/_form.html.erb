@@ -1,0 +1,30 @@
+<!-- Note 1: Partials are REQUIRED to have _ in from of them, but when
+referencing, you do it without _-->
+<%= form_with model: @article do |form| %>
+  <!-- (form_with) This is a form builder-->
+  <div>
+    <%= form.label :title %>
+    <br>
+    <%= form.text_field :title %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :body %>
+    <br>
+    <%= form.text_area :body %>
+    <% @article.errors.full_messages_for(:body).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

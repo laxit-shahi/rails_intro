@@ -1,0 +1,18 @@
+<!-- This file automatically renders when the ArticlesController is hit -->
+<!-- It automatically has access to the instance values-->
+<h1> Hello, Main </h1>
+
+<ul>
+  <!-- % means to evaluate ruby code-->
+  <% @articles.each do |article| %>
+    <li>
+  <!-- %= means to evaluate ruby code and OUTPUT the value it returns-->
+  <!-- Helper functions are used (created by resource) to simplify this anchor tag-->
+    <%= link_to article.title, article %>
+  </li>
+  <% end %>
+</ul>
+
+ <!--  Remember, new_article_path is just the prefix (new_article)+path -->
+ <!--  This can be done with any any prefix, which can be seen by using "rails routes"-->
+<%= link_to "New Article", new_article_path %>
