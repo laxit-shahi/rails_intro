@@ -1,5 +1,8 @@
 # Here ArticlesController is a SUBCLASS of ApplicationController (the parent of all controllers)
 class ArticlesController < ApplicationController
+  # Add basic auth to all controller action EXCEPT index and show
+  http_basic_authenticate_with name: "laxit", password: "secret", except: [ :index, :show ]
+
   # If the index action is empty rails will AUTOMATICALLY render the view that matches the name of the controller and action
   def index
    # This gives instance access, so the view now has direct access
@@ -51,8 +54,6 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    puts "hello"
-    puts @article.inspect
     @article.destroy
 
     redirect_to root_path, status: :see_other
@@ -62,7 +63,6 @@ class ArticlesController < ApplicationController
   # , we add a function to validate and return it for us
   private
     def article_params
-      p "article_params", params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status)
     end
 end

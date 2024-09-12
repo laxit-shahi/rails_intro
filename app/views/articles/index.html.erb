@@ -1,15 +1,17 @@
 <!-- This file automatically renders when the ArticlesController is hit -->
 <!-- It automatically has access to the instance values-->
-<h1> Hello, Main </h1>
-
+<h1> Articles </h1>
+Our blog has <%= Article.public_count %> PUBLIC articles and we are on da way up ^
 <ul>
   <!-- % means to evaluate ruby code-->
   <% @articles.each do |article| %>
+    <% unless article.archived?%>
     <li>
-  <!-- %= means to evaluate ruby code and OUTPUT the value it returns-->
-  <!-- Helper functions are used (created by resource) to simplify this anchor tag-->
+    <!-- %= means to evaluate ruby code and OUTPUT the value it returns-->
+    <!-- Helper functions are used (created by resource) to simplify this anchor tag-->
     <%= link_to article.title, article %>
-  </li>
+    </li>
+    <% end %>
   <% end %>
 </ul>
 

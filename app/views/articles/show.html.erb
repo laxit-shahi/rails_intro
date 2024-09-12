@@ -20,3 +20,21 @@
     <%= link_to "Show All", root_path %>
   </li>
 </ul>
+
+<h2>
+  Comments
+</h2>
+<!--Rails here automatically searches for the "_comments.html.erb". This is
+done by first taking the returned object (@article.comments ->
+Comment),converting to singular form, then searching the partial
+(_comments.html.erb)-->
+<%= render @article.comments %>
+<!--1. Create a new from with the specified models--> <!--2. Because know there
+are two: article and article.comments.build, rails will configure for a nested
+route: article/article_id/comments--> <!--3. Also, @article.comments.build
+creates an IN MEMORY Comment object associate with @article (not yet saved in
+db)-->
+<h2>
+  Add a comment
+</h2>
+<%= render "comments/form", article: @article %>

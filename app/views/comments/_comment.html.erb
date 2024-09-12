@@ -1,0 +1,24 @@
+<% unless comment.archived? %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <%= link_to "Delete Comment",
+    # Here this is just a short hand for generating the path
+    # the two values represent the ids of article and comment respectively
+    # This generates /articles/:id/comments_id/:icomment_id
+    # This works due to the nested route that we setup at the start (I think?)
+    [comment.article, comment],
+    data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?",
+    } %>
+  </p>
+<% end %>

@@ -1,4 +1,4 @@
-require "test_helper"
+equire "test_helper"
 
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do

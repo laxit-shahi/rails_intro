@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   root "articles#index"
 
   # Creates CRUD routes
-  resources :articles
+  resources :articles do
+    # This is a nested route and captures the hierarchial relationship between articles and comments
+
+    resources :comments
+  end
 
   # The following below are "conventional" routes and can be replaced with resources
   # get "/articles", to: "articles#index" # Map the GET req of /articles to index of ArticlesController
